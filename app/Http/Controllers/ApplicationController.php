@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Http\Requests\StoreApplicationRequest;
 use App\Http\Requests\UpdateApplicationRequest;
+use App\Models\CarSpecs;
 use App\Models\VehichleDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -37,7 +38,6 @@ class ApplicationController extends Controller
     {
         $validated = $request->validated();
 
-        
         $application = Application::create([
             'app_id' => Str::uuid(),
             'reg_no' => $validated['reg_no'],
@@ -52,9 +52,10 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Application $application)
+    public function show($id)
     {
-        //
+        $carSpecs = CarSpecs::where('id', $id)->firstOrFail();
+        return response()->json($carSpecs);
     }
 
     /**
@@ -68,10 +69,7 @@ class ApplicationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateApplicationRequest $request, Application $application)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

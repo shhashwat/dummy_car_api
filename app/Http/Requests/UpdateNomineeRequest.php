@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateApplicationRequest extends FormRequest
+class UpdateNomineeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,13 +22,7 @@ class UpdateApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'claim' => 'required|in:yes,no',
-        'make' => 'required|string',
-        'model' => 'required|string',
-        'registration_year' => 'required|digits:4|integer|min:1950|max:' . date('Y'),
-        'fuel_type' => 'required|string',
-        'variant' => 'required|string',
-        'insurance_till' => 'required|date',
+            //
         ];
     }
 }
