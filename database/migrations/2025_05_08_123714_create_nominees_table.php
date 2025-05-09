@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('nominees', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('app_id');
+            $table->string('nominee_name');
+            $table->date('dob');
+            $table->string('relationship');
+            $table->string('gender');
         });
     }
 

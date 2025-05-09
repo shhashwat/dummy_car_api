@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CarSpecsSeeder::class,
             KycSeeder::class,
             AddressSeeder::class,
+            NomineeSeeder::class,
         ]);
     }
 }

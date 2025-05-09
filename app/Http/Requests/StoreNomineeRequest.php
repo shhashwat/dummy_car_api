@@ -11,7 +11,7 @@ class StoreNomineeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreNomineeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nominee_name' => ['required', 'string', 'max:255'],
+            'dob' => ['required', 'date', 'before:today'],
+            'relationship' => ['required', 'string', 'in:Father,Mother,Spouse,Sibling,Child,Friend'],
+            'gender' => ['required', 'string', 'in:male,female,other'],
         ];
     }
 }

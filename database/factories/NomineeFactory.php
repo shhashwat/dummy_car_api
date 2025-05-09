@@ -17,7 +17,11 @@ class NomineeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'app_id' => fake()->uuid(),
+            'nominee_name' => fake()->name(),
+            'dob' => fake()->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
+            'relationship' => fake()->randomElement(['Father', 'Mother', 'Spouse', 'Sibling', 'Child', 'Friend',]),
+            'gender' => fake()->randomElement(['male', 'female', 'other']),
         ];
     }
 }

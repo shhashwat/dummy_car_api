@@ -11,7 +11,7 @@ class UpdateNomineeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateNomineeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nominee_name' => ['sometimes', 'string', 'max:255'],
+            'dob' => ['sometimes', 'date', 'before:today'],
+            'relationship' => ['sometimes', 'string', 'in:Father,Mother,Spouse,Sibling,Child,Friend'],
+            'gender' => ['sometimes', 'string', 'in:male,female,other'],
         ];
     }
 }

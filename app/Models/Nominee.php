@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Nominee extends Model
 {
     /** @use HasFactory<\Database\Factories\NomineeFactory> */
+    public $timestamps = false;
     use HasFactory;
+    protected $guarded = [];
 }

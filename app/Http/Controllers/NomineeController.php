@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nominee;
 use App\Http\Requests\StoreNomineeRequest;
 use App\Http\Requests\UpdateNomineeRequest;
+use Illuminate\Support\Str;
 
 class NomineeController extends Controller
 {
@@ -13,7 +14,8 @@ class NomineeController extends Controller
      */
     public function index()
     {
-        //
+        $nominee = Nominee::all();
+        return response()->json($nominee);
     }
 
     /**
@@ -29,7 +31,17 @@ class NomineeController extends Controller
      */
     public function store(StoreNomineeRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $nominee = Nominee::create([
+            'app_id' => Str::uuid(),
+            'nominee_name' => $validated['nominee_name'],
+            'dob' => $validated['dob'],
+            'relationship' => $validated['relationship'],
+            'gender' => $validated['gender'],
+        ]);
+
+        return response()->json($nominee);
     }
 
     /**
@@ -37,7 +49,7 @@ class NomineeController extends Controller
      */
     public function show(Nominee $nominee)
     {
-        //
+        return response()->json($nominee);
     }
 
     /**
@@ -53,7 +65,16 @@ class NomineeController extends Controller
      */
     public function update(UpdateNomineeRequest $request, Nominee $nominee)
     {
-        //
+        $validated = $request->validated();
+
+        $nominee->update([
+            'nominee_name' => $validated['nominee_name'],
+            'dob' => $validated['dob'],
+            'relationship' => $validated['relationship'],
+            'gender' => $validated['gender'],
+        ]);
+
+        return response()->json($nominee);
     }
 
     /**
