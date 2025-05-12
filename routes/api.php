@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
 use App\Models\Address;
 
-Route::get('student', [StudentsController::class, 'index'])->name('student.index');
-Route::post('add',[StudentsController::class, 'store'])->name('student.store');
-Route::put('student/{student}',[StudentsController::class, 'update'])->name('student.update');
-
 Route::resource('application', ApplicationController::class);
 
 Route::resource('kyc', KycController::class);
