@@ -24,7 +24,7 @@ class CarSpecsFactory extends Factory
             'registartion_year' => fake()->year(),
             'fuel_type' => fake()->randomElement(['Petrol', 'Diesel', 'Electric', 'Hybrid']),
             'variant' => fake()->bothify('##?#?#'),
-            'insurance_till' => fake()->date('Y-m-d', '+2 years'),
+            'insurance_till' => fake()->date('Y-m-d', '+4 years'),
         ];
     }
 }

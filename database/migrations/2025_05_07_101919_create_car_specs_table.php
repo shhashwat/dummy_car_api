@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('registartion_year');
             $table->string('fuel_type');
             $table->string('variant');
-            $table->string('insurance_till');
+            $table->date('insurance_till');
         });
     }
 
