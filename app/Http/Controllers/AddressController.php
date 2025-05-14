@@ -89,7 +89,7 @@ class AddressController extends Controller
             'city' => 'required',
             'district' => 'required',
             'state' => 'required',
-            'same_as_current' => 'required',
+            'same_as_current' => 'required|boolean',
             'per_add_line_1' => 'nullable',
             'per_pin_code' => 'nullable',
             'per_city' => 'nullable',
@@ -97,22 +97,37 @@ class AddressController extends Controller
             'per_state' => 'nullable',
         ]);
 
-        $address->update([
+        $permanentFields = [
+            'per_add_line_1' => $request->per_add_line_1,
+            'per_pin_code' => $request->per_pin_code,
+            'per_city' => $request->per_city,
+            'per_district' => $request->per_district,
+            'per_state' => $request->per_state,
+        ];
+
+        // If same_as_current is true (boolean true or string '1'), nullify permanent address fields
+        if ($request->same_as_current == true || $request->same_as_current === '1') {
+            $permanentFields = [
+                'per_add_line_1' => null,
+                'per_pin_code' => null,
+                'per_city' => null,
+                'per_district' => null,
+                'per_state' => null,
+            ];
+        }
+
+        $address->update(array_merge([
             'add_line_1' => $request->add_line_1,
             'pin_code' => $request->pin_code,
             'city' => $request->city,
             'district' => $request->district,
             'state' => $request->state,
             'same_as_current' => $request->same_as_current,
-            'per_add_line_1' => $request->per_add_line_1,
-            'per_pin_code' => $request->per_pin_code,
-            'per_city' => $request->per_city,
-            'per_district' => $request->per_district,
-            'per_state' => $request->per_state
-        ]);
+        ], $permanentFields));
 
         return response()->json($address);
     }
+
 
     /**
      * Remove the specified resource from storage.

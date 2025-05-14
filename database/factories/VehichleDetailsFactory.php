@@ -28,6 +28,7 @@ class VehichleDetailsFactory extends Factory
             'engine_number' => strtoupper(fake()->bothify('ENG###??##')),
             'vehicle_reg_number' => fake()->regexify('[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}'),
             'puc_available' => fake()->boolean(),
+            'mob_number' => fake()->phoneNumber(),
         ];
     }
 }

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('engine_number');
             $table->string('vehicle_reg_number');
             $table->string('puc_available');
+            $table->string('mob_number');
         });
     }
 
