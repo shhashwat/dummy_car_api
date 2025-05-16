@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CarSpecs;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CarSpecsController extends Controller
@@ -47,6 +48,8 @@ class CarSpecsController extends Controller
         ]);
 
         $carSpecs = CarSpecs::findOrFail($id);
+
+        $request->insurance_till = Carbon::parse($request->insurance_till)->format('Y-m-d');
 
         $carSpecs->update([
             'claim' => $request->claim,

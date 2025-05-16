@@ -6,8 +6,8 @@ use App\Http\Controllers\CarSpecsController;
 use App\Http\Controllers\KycController;
 use App\Http\Controllers\NomineeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentsController;
-use App\Models\Address;
+// use App\Http\Controllers\StudentsController;
+// use App\Models\Address;
 
 Route::resource('application', ApplicationController::class);
 
